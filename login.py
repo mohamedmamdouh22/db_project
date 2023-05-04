@@ -37,7 +37,7 @@ class Login:
         #add button
         self.add_i=PhotoImage(file='std.png')
         self.add_img=self.add_i.subsample(3,3)
-        self.add=Button(self.tab_frame,text='Student',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('arial',20),command=lambda:self.start_screen(self.tab_frame,'student'))
+        self.add=Button(self.tab_frame,text='Student',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('arial',20),command=lambda:self.start_screen(self.tab_frame,'students'))
         self.add.place(x=20,y=120)
         #print the title
         self.var=StringVar()
@@ -60,7 +60,9 @@ class Login:
 
         self.doc_frame = Frame(root, bg="white",width=900,height=900,highlightbackground='#888',highlightthickness=1)
         self.doc_frame.place(x=300,y=0)
-        #print the title
+        #print the title and back button
+        self.back_lab=Button(root,text='Back',font='times 20 bold',background='white',command=lambda:self.choose_table(self.doc_frame))
+        self.back_lab.place(x=30,y=10)
         self.var=StringVar()
         self.lab=Label(self.doc_frame,textvariable=self.var,font='times 20 bold',background='white')
         self.var.set(table_name.upper())
