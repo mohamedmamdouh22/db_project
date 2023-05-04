@@ -26,7 +26,7 @@ from mysql.connector import Error
 #         cursor.close()
 #         connection.close()
 #         print("MySQL connection is closed")
-frame = Frame(root,width=1400,height=800,highlightbackground='#888',highlightthickness=1)
+frame = Frame(root,width=1400,height=900,highlightbackground='#888',highlightthickness=1)
 frame.place(x=0,y=0)
 var=StringVar()
 Label(frame,textvariable=var,height=5,font='times 20 bold').pack()
@@ -37,10 +37,10 @@ Label(frame,image=photo,width=1400).pack()
 def login():
     Login(frame)
 logbutton = HoverButton(frame,text="LOG IN",bg="#68ece8",font=("Arial",30),fg="black", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=lambda : login())
-logbutton.place(x=400,y=650)
+logbutton.place(x=400,y=700)
 # button exit
 exit = HoverButton(frame,text="EXIT",bg="#68ece8",font=("Arial",30),fg="black",activeforeground='red', relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=quit)
-exit.place(x=850,y=650)
+exit.place(x=850,y=700)
 
 
 root.mainloop()
