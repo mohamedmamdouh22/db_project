@@ -50,7 +50,7 @@ class Login:
         self.add.place(x=20,y=100)
         #print the title
         self.var=StringVar()
-        self.lab=Label(self.tab_frame,textvariable=self.var,font='times 20 bold',background='white')
+        self.lab=Label(self.tab_frame,textvariable=self.var,font=('Comic Sans MS', 20),background='white')
         self.var.set('Choose Table')
         self.lab.place(x=350,y=50)
         #search button
@@ -105,7 +105,7 @@ class Login:
         self.cur.execute(f"select email from login_emails where email = '{self.ent1in.get()}' ")
         result_username = self.cur.fetchone()
         if result_username == None:
-            messagebox.showerror("Student Enrollment","WRONG Email")
+            messagebox.showerror("Student Enrollment","Wrong Email")
 
 
         elif result_username != None :
@@ -113,10 +113,10 @@ class Login:
             self.cur.execute(f"select pass from login_emails where pass = {self.ent2in.get()}")
             result_pass = self.cur.fetchone()
             if result_pass == None:
-                messagebox.showerror("Student Enrollment","WRONG PASSWORD")
+                messagebox.showerror("Student Enrollment","Wrong Password")
 
             else :
-                messagebox.showinfo("Student Enrollment","WELCOME "+ self.ent1in.get().split('@')[0])
+                messagebox.showinfo("Student Enrollment","Welcome "+ self.ent1in.get().split('@')[0])
                 self.choose_table(to_forget)
                 
 
