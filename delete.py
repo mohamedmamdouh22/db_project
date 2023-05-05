@@ -4,7 +4,8 @@ from images import *
 from tkinter import messagebox
 
 class Delete:
-    def __init__(self,table,cur):
+    def __init__(self,start_frame,table,cur):
+        start_frame.place_forget()
         self.frameDelete = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
         self.frameDelete.place(x=500,y=0)
         self.currentTable=table

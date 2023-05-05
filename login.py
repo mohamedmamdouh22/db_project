@@ -5,8 +5,8 @@ from tkinter import messagebox
 from add import *
 from delete import *
 
-def handleDelete(table,cur):
-    Delete(table,cur)
+def handleDelete(frame,table,cur):
+    Delete(frame,table,cur)
     
 
 
@@ -98,7 +98,7 @@ class Login:
         self.delete_img = self.delete_i.subsample(3, 3)
         self.delete = Button(self.doc_frame, text='DELETE', bg='white', fg='red', height=350,
                         width=400, relief=RAISED, overrelief=SUNKEN, compound=TOP,cursor = 'cross', image=self.delete_img,
-                        borderwidth=3, font=('Comic Sans MS', 20),command=lambda: handleDelete(self.currentTable,self.cur))
+                        borderwidth=3, font=('Comic Sans MS', 20),command=lambda: handleDelete(self.doc_frame,self.currentTable,self.cur))
         self.delete.place(x=450, y=520)
 
     def check(self,to_forget):
