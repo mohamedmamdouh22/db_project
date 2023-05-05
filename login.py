@@ -1,5 +1,4 @@
 from tkinter import *
-from check import *
 from root import *
 from images import *
 from tkinter import messagebox
