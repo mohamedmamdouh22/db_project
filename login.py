@@ -2,12 +2,12 @@ from tkinter import *
 from root import *
 from images import *
 from tkinter import messagebox
-
+from add import *
 class Login:
     framelogin = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
     def __init__(self,Start_frame,cur):
         Start_frame.place_forget()
-
+        self.cur=cur
         self.framelogin = Frame(root, bg="white",width=500,height=900,highlightbackground='#888',highlightthickness=1)
         self.framelogin.place(x=500,y=0)
         ########
@@ -26,7 +26,7 @@ class Login:
         self.lab2in.place(x=180, y=390)
         self.ent2in = Entry(self.framelogin, font=('arial', 20), show="*")
         self.ent2in.place(x=80, y=430)
-        self.butin = Button(self.framelogin,bg='limegreen', text="LOG IN", font=('arial', 20),command=lambda:self.check(self.framelogin,cur))
+        self.butin = Button(self.framelogin,bg='limegreen', text="LOG IN", font=('arial', 20),command=lambda:self.check(self.framelogin))
         self.butin.place(x=180, y=550)
         self.resetin = Button(self.framelogin, text="EXIT",activebackground='red', font=('arial', 20),command=quit)
         self.resetin.place(x=190, y=680)
@@ -70,7 +70,7 @@ class Login:
         #add button
         self.add_i=PhotoImage(file='images/add.png')
         self.add_img=self.add_i.subsample(3,3)
-        self.add=Button(self.doc_frame,text='ADD',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('arial',20))
+        self.add=Button(self.doc_frame,text='ADD',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('arial',20),command=lambda:Add(self.doc_frame,self.cur))
         self.add.place(x=20,y=120)
 
         #search button
@@ -90,16 +90,17 @@ class Login:
                         width=400, relief=RAISED, overrelief=SUNKEN, compound=TOP,cursor = 'cross', image=self.delete_img,
                         borderwidth=3, font=('arial', 20))
         self.delete.place(x=450, y=520)
-    def check(self,to_forget,cur):
-        cur.execute(f"select email from login_emails where email = '{self.ent1in.get()}' ")
-        result_username = cur.fetchone()
+
+    def check(self,to_forget):
+        self.cur.execute(f"select email from login_emails where email = '{self.ent1in.get()}' ")
+        result_username = self.cur.fetchone()
         if result_username == None:
             messagebox.showerror("Student Enrollment","WRONG Email")
 
 
         elif result_username != None :
-            cur.execute(f"select pass from login_emails where pass = {self.ent2in.get()}")
-            result_pass = cur.fetchone()
+            self.cur.execute(f"select pass from login_emails where pass = {self.ent2in.get()}")
+            result_pass = self.cur.fetchone()
             if result_pass == None:
                 messagebox.showerror("Student Enrollment","WRONG PASSWORD")
 
