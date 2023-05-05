@@ -13,7 +13,7 @@ class Login:
         self.framelogin.place(x=500,y=0)
         ########
         # self.photo=global_image_list[0]
-        self.photo=PhotoImage(file='login.png')
+        self.photo=PhotoImage(file='images/login.png')
         self.photo_i=self.photo.subsample(3,3)
         self.ph=Label(self.framelogin,image=self.photo_i)
         self.ph.place(x=25,y=25)
@@ -36,7 +36,7 @@ class Login:
         self.tab_frame = Frame(root, bg="white",width=900,height=900,highlightbackground='#888',highlightthickness=1)
         self.tab_frame.place(x=300,y=0)
         #add button
-        self.add_i=PhotoImage(file='std.png')
+        self.add_i=PhotoImage(file='images/std.png')
         self.add_img=self.add_i.subsample(3,3)
         self.add=Button(self.tab_frame,text='Student',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('arial',20),command=lambda:self.start_screen(self.tab_frame,'students'))
         self.add.place(x=20,y=120)
@@ -46,12 +46,12 @@ class Login:
         self.var.set('Choose Table')
         self.lab.place(x=350,y=10)
         #search button
-        self.search_i=PhotoImage(file='course.png')
+        self.search_i=PhotoImage(file='images/course.png')
         self.search_img=self.search_i.subsample(3,3)
         self.search=Button(self.tab_frame,text='Courses',bg='white',height=350,width=400,compound=TOP,image=self.search_img,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,fg='sky blue',borderwidth=3,font=('arial',20),command=lambda:self.start_screen(self.tab_frame,'courses'))
         self.search.place(x=450,y=120)
         #edit button
-        self.edit_i=PhotoImage(file='inst.png')
+        self.edit_i=PhotoImage(file='images/inst.png')
         self.edit_img=self.edit_i.subsample(2,2)
         self.edit=Button(self.tab_frame,text='Instructors',bg='white',height=350,width=400,compound=TOP,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,image=self.edit_img,fg='grey',borderwidth=3,font=('arial',20),command=lambda:self.start_screen(self.tab_frame,'instructors'))
         self.edit.place(x=200,y=500)
@@ -69,23 +69,23 @@ class Login:
         self.var.set(table_name.upper())
         self.lab.place(x=350,y=10)
         #add button
-        self.add_i=PhotoImage(file='add.png')
+        self.add_i=PhotoImage(file='images/add.png')
         self.add_img=self.add_i.subsample(3,3)
         self.add=Button(self.doc_frame,text='ADD',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('arial',20))
         self.add.place(x=20,y=120)
 
         #search button
-        self.search_i=PhotoImage(file='search.png')
+        self.search_i=PhotoImage(file='images/search.png')
         self.search_img=self.search_i.subsample(3,3)
         self.search=Button(self.doc_frame,text='SEARCH',bg='white',height=350,width=400,compound=TOP,image=self.search_img,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,fg='sky blue',borderwidth=3,font=('arial',20))
         self.search.place(x=450,y=120)
         #edit button
-        self.edit_i=PhotoImage(file='edit.png')
+        self.edit_i=PhotoImage(file='images/edit.png')
         self.edit_img=self.edit_i.subsample(3,3)
         self.edit=Button(self.doc_frame,text='EDIT',bg='white',height=350,width=400,compound=TOP,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,image=self.edit_img,fg='grey',borderwidth=3,font=('arial',20))
         self.edit.place(x=20,y=520)
         #delet button
-        self.delete_i = PhotoImage(file='delete.png')
+        self.delete_i = PhotoImage(file='images/delete.png')
         self.delete_img = self.delete_i.subsample(3, 3)
         self.delete = Button(self.doc_frame, text='DELETE', bg='white', fg='red', height=350,
                         width=400, relief=RAISED, overrelief=SUNKEN, compound=TOP,cursor = 'cross', image=self.delete_img,

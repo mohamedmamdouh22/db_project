@@ -35,7 +35,7 @@ var=StringVar()
 Label(frame,textvariable=var,height=5,font='times 20 bold').pack()
 var.set('Welcome To Student Enrollment Program')
 ##########################
-photo=PhotoImage(file="student.png",height=800)
+photo=PhotoImage(file="images/student.png",height=800)
 Label(frame,image=photo,width=1400).pack()
 def login(frame,cur):
     Login(frame,cur)
