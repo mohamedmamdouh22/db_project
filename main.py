@@ -3,8 +3,8 @@ from login import *
 from hover import *
 from root import *
 from images import *
-import mysql.connector
-from mysql.connector import Error
+import sqlite3
+
 #Start up frame
 # try:
 #     connection = mysql.connector.connect(host='localhost',
@@ -26,6 +26,9 @@ from mysql.connector import Error
 #         cursor.close()
 #         connection.close()
 #         print("MySQL connection is closed")
+con=sqlite3.connect(database='db.db')
+cur=con.cursor()
+
 frame = Frame(root,width=1400,height=900,highlightbackground='#888',highlightthickness=1)
 frame.place(x=0,y=0)
 var=StringVar()
@@ -35,12 +38,11 @@ var.set('Welcome To Student Enrollment Program')
 photo=PhotoImage(file="student.png",height=800)
 Label(frame,image=photo,width=1400).pack()
 def login():
-    Login(frame)
-logbutton = HoverButton(frame,text="LOG IN",bg="#68ece8",font=("Arial",30),fg="black", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=lambda : login())
+    Login(frame,cur)
+logbutton = HoverButton(frame,text="LOG IN",bg="#68ece8",font=("Arial",30),fg="black", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=lambda : login(cur))
 logbutton.place(x=400,y=700)
 # button exit
 exit = HoverButton(frame,text="EXIT",bg="#68ece8",font=("Arial",30),fg="black",activeforeground='red', relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=quit)
 exit.place(x=850,y=700)
-
-
 root.mainloop()
+con.close()
