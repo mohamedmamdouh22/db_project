@@ -37,9 +37,9 @@ var.set('Welcome To Student Enrollment Program')
 ##########################
 photo=PhotoImage(file="student.png",height=800)
 Label(frame,image=photo,width=1400).pack()
-def login():
+def login(frame,cur):
     Login(frame,cur)
-logbutton = HoverButton(frame,text="LOG IN",bg="#68ece8",font=("Arial",30),fg="black", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=lambda : login(cur))
+logbutton = HoverButton(frame,text="LOG IN",bg="#68ece8",font=("Arial",30),fg="black", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=lambda : login(frame,cur))
 logbutton.place(x=400,y=700)
 # button exit
 exit = HoverButton(frame,text="EXIT",bg="#68ece8",font=("Arial",30),fg="black",activeforeground='red', relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=quit)
