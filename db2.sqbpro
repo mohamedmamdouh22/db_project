@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="E:/Faculty of Engineering/3 - Third year Computer/2nd Term/2 - Database/Project/db_project/db2.db" readonly="0" foreign_keys="" case_sensitive_like="" temp_store="" wal_autocheckpoint="" synchronous=""/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="2426"/><column_width id="4" width="0"/></tab_structure><tab_browse><current_table name="0,0:"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE &quot;instructors&quot; (
+	&quot;id&quot;	INTEGER NOT NULL UNIQUE,
+	&quot;first_name&quot;	TEXT NOT NULL,
+	&quot;last_name&quot;	TEXT NOT NULL,
+	&quot;phone&quot;	TEXT NOT NULL UNIQUE,
+	&quot;email&quot;	TEXT NOT NULL UNIQUE,
+	&quot;address&quot;	TEXT NOT NULL,
+	&quot;gender&quot;	TEXT NOT NULL,
+	&quot;date_of_birth&quot;	TEXT NOT NULL,
+	PRIMARY KEY(&quot;id&quot; AUTOINCREMENT)
+)</sql><current_tab id="0"/></tab_sql></sqlb_project>
