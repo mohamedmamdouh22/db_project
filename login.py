@@ -17,7 +17,7 @@ class Login:
         self.ph=Label(self.framelogin,image=self.photo_i)
         self.ph.place(x=25,y=25)
         ##############
-        self.lab1in = Label(self.framelogin, text="User Name", font=('arial', 20),bg='white')
+        self.lab1in = Label(self.framelogin, text="Email", font=('arial', 20),bg='white')
         self.lab1in.place(x=180, y=280)
         self.ent1in = Entry(self.framelogin, font=('arial', 20))
         self.ent1in.place(x=80, y=320)
@@ -91,20 +91,20 @@ class Login:
                         borderwidth=3, font=('arial', 20))
         self.delete.place(x=450, y=520)
     def check(self,to_forget,cur):
-        cur.execute(f"select user from login where user = '{self.ent1in.get()}' ")
+        cur.execute(f"select email from login_emails where email = '{self.ent1in.get()}' ")
         result_username = cur.fetchone()
         if result_username == None:
-            messagebox.showerror("Student Enrollment","WRONG USER NAME")
+            messagebox.showerror("Student Enrollment","WRONG Email")
 
 
         elif result_username != None :
-            cur.execute(f"select pass from login where pass = {self.ent2in.get()}")
+            cur.execute(f"select pass from login_emails where pass = {self.ent2in.get()}")
             result_pass = cur.fetchone()
             if result_pass == None:
                 messagebox.showerror("Student Enrollment","WRONG PASSWORD")
 
             else :
-                messagebox.showinfo("Student Enrollment","WELCOME "+ self.ent1in.get())
+                messagebox.showinfo("Student Enrollment","WELCOME "+ self.ent1in.get().split('@')[0])
                 self.choose_table(to_forget)
                 
 
