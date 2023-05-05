@@ -2,11 +2,14 @@ from tkinter import *
 from root import *
 from images import *
 from tkinter import messagebox
+from add import *
 from delete import *
 
 def handleDelete(table,cur):
     Delete(table,cur)
     
+
+
 class Login:
     framelogin = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
     def __init__(self,Start_frame,cur):
@@ -31,7 +34,8 @@ class Login:
         self.lab2in.place(x=180, y=390)
         self.ent2in = Entry(self.framelogin, font=('Comic Sans MS', 20), show="*")
         self.ent2in.place(x=80, y=430)
-        self.butin = Button(self.framelogin,bg='limegreen', text="Login", font=('Comic Sans MS', 20),command=lambda:self.check(self.framelogin,cur))
+
+        self.butin = Button(self.framelogin,bg='limegreen', text="Login", font=('Comic Sans MS', 20),command=lambda:self.check(self.framelogin))
         self.butin.place(x=180, y=550)
         self.resetin = Button(self.framelogin, text="Exit",activebackground='red', font=('Comic Sans MS', 20),command=quit)
         self.resetin.place(x=190, y=680)
@@ -75,7 +79,8 @@ class Login:
         #add button
         self.add_i=PhotoImage(file='images/add.png')
         self.add_img=self.add_i.subsample(3,3)
-        self.add=Button(self.doc_frame,text='ADD',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('Comic Sans MS',20))
+
+        self.add=Button(self.doc_frame,text='ADD',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('Comic Sans MS',20),command=lambda:Add(self.doc_frame,self.cur))
         self.add.place(x=20,y=120)
 
         #search button
@@ -95,21 +100,23 @@ class Login:
                         width=400, relief=RAISED, overrelief=SUNKEN, compound=TOP,cursor = 'cross', image=self.delete_img,
                         borderwidth=3, font=('Comic Sans MS', 20),command=lambda: handleDelete(self.currentTable,self.cur))
         self.delete.place(x=450, y=520)
-    def check(self,to_forget,cur):
-        cur.execute(f"select user from login where user = '{self.ent1in.get()}' ")
-        result_username = cur.fetchone()
+
+    def check(self,to_forget):
+        self.cur.execute(f"select email from login_emails where email = '{self.ent1in.get()}' ")
+        result_username = self.cur.fetchone()
         if result_username == None:
-            messagebox.showerror("Student Enrollment","WRONG USER NAME")
+            messagebox.showerror("Student Enrollment","WRONG Email")
 
 
         elif result_username != None :
-            cur.execute(f"select pass from login where pass = '{self.ent2in.get()}' ")
-            result_pass = cur.fetchone()
+
+            self.cur.execute(f"select pass from login_emails where pass = {self.ent2in.get()}")
+            result_pass = self.cur.fetchone()
             if result_pass == None:
                 messagebox.showerror("Student Enrollment","WRONG PASSWORD")
 
             else :
-                messagebox.showinfo("Student Enrollment","WELCOME "+ self.ent1in.get())
+                messagebox.showinfo("Student Enrollment","WELCOME "+ self.ent1in.get().split('@')[0])
                 self.choose_table(to_forget)
                 
 

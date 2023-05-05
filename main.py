@@ -5,29 +5,12 @@ from root import *
 from images import *
 import sqlite3
 
-#Start up frame
-# try:
-#     connection = mysql.connector.connect(host='localhost',
-#                                          database='Electronics',
-#                                          user='pynative',
-#                                          password='pynative@#29')
-#     if connection.is_connected():
-#         db_Info = connection.get_server_info()
-#         print("Connected to MySQL Server version ", db_Info)
-#         cursor = connection.cursor()
-#         cursor.execute("select database();")
-#         record = cursor.fetchone()
-#         print("You're connected to database: ", record)
-
-# except Error as e:
-#     print("Error while connecting to MySQL", e)
-# finally:
-#     if connection.is_connected():
-#         cursor.close()
-#         connection.close()
-#         print("MySQL connection is closed")
-con=sqlite3.connect(database='db.db')
+# connect to database
+con=sqlite3.connect(database='db2.db')
 cur=con.cursor()
+
+#Start up frame
+
 frame = Frame(root,width=1400,height=900,highlightbackground='#888',highlightthickness=1)
 frame.place(x=0,y=0)
 var=StringVar()
