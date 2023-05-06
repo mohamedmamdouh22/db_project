@@ -2,7 +2,7 @@ from tkinter import *
 from root import *
 from images import *
 from tkinter import messagebox
-from add import *
+from add import Add
 from delete import *
 
 
@@ -76,8 +76,9 @@ class Login:
         self.add_i=PhotoImage(file='images/add.png')
         self.add_img=self.add_i.subsample(3,3)
 
-        self.add=Button(self.doc_frame,text='ADD',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('Comic Sans MS',20),command=lambda:Add(self.doc_frame,self.cur))
+        self.add=Button(self.doc_frame,text='ADD',image=self.add_img,bg='white',height=350,fg='green',width=400,compound=TOP,cursor = 'cross', bd = 3 , relief = RAISED, overrelief = SUNKEN,borderwidth=3,font=('Comic Sans MS',20),command=lambda:Add(self.doc_frame,self.currentTable,cur))
         self.add.place(x=20,y=120)
+
 
         #search button
         self.search_i=PhotoImage(file='images/search.png')
@@ -111,6 +112,4 @@ class Login:
                 messagebox.showinfo("Student Enrollment","Welcome "+ self.ent1in.get().split('@')[0])
                 self.choose_table(to_forget)
     def handleDelete(self,frame,table,cur):
-        Delete(frame,table,cur,self.choose_table)    
-
-
+        Delete(frame,table,cur,self.choose_table)  
