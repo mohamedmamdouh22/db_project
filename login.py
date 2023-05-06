@@ -5,10 +5,6 @@ from tkinter import messagebox
 from add import *
 from delete import *
 
-def handleDelete(frame,table,cur):
-    Delete(frame,table,cur)
-    
-
 
 class Login:
     framelogin = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
@@ -98,7 +94,7 @@ class Login:
         self.delete_img = self.delete_i.subsample(3, 3)
         self.delete = Button(self.doc_frame, text='DELETE', bg='white', fg='red', height=350,
                         width=400, relief=RAISED, overrelief=SUNKEN, compound=TOP,cursor = 'cross', image=self.delete_img,
-                        borderwidth=3, font=('Comic Sans MS', 20),command=lambda: handleDelete(self.doc_frame,self.currentTable,self.cur))
+                        borderwidth=3, font=('Comic Sans MS', 20),command=lambda: self.handleDelete(self.doc_frame,self.currentTable,self.cur))
         self.delete.place(x=450, y=520)
 
     def check(self,to_forget):
@@ -106,18 +102,15 @@ class Login:
         result_username = self.cur.fetchone()
         if result_username == None:
             messagebox.showerror("Student Enrollment","Wrong Email")
-
-
         elif result_username != None :
-
             self.cur.execute(f"select pass from login_emails where pass = {self.ent2in.get()}")
             result_pass = self.cur.fetchone()
             if result_pass == None:
                 messagebox.showerror("Student Enrollment","Wrong Password")
-
             else :
                 messagebox.showinfo("Student Enrollment","Welcome "+ self.ent1in.get().split('@')[0])
                 self.choose_table(to_forget)
-                
+    def handleDelete(self,frame,table,cur):
+        Delete(frame,table,cur,self.choose_table)    
 
 
