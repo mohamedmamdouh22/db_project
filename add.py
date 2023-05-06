@@ -9,7 +9,6 @@ class Add:
           if table=='students':
                self.ret_frame=doc_frame
                doc_frame.place_forget()
-               
                self.cur=cur
                self.frameadd = Frame(root, bg="white",width=600,height=900,highlightbackground='#888',highlightthickness=1)
                self.frameadd.place(x=400,y=0)
@@ -172,8 +171,10 @@ class Add:
          address=self.entry5.get()
          gender=self.gender_var.get()
          date=self.entry6.get()
-         mails=cur.execute('select email from students').fetchall()
-         phons=cur.execute('select phone from students').fetchall()
+         cur.execute('select email from students')
+         mails=cur.fetchall()
+         cur.execute('select phone from students')
+         phons=cur.fetchall()
          saved_mails=[]
          saved_phons=[]
          print(firstname)
@@ -181,7 +182,7 @@ class Add:
               saved_mails.append(mail[0])
          for phon in phons:
               saved_phons.append(phon[0])
-         if firstname=='' or lasttname == '' or phon=='' or email == '' or date == '' :
+         if firstname=='' or lasttname == '' or phone=='' or email == '' or date == '' :
               messagebox.showerror('Student enrollment program','please, fill all entries')
          if email in saved_mails:
               messagebox.showerror('Student enrollment program','email already exists')

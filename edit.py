@@ -136,35 +136,23 @@ class Update:
 
         cur.execute(f"select * from {table}  where id = {id} ")
         record = cur.fetchall()
-        self.entry1.insert(0 ,record[0])
-        self.entry2.insert(0 ,record[1])
-        self.entry3.insert(0 ,record[2])
-        self.entry4.insert(0 ,record[3])
-        self.entry5.insert(0 ,record[4])
-        self.entry6.insert(0 ,record[5])
-    
-    def update (self , table , cur , id):
-        
-        cur.execute(f""" UPDATE {table} SET  
-              self.entry1 = :first_name
-              self.entry2 = :last_name,
-              self.entry3 = :phone,
-              self.entry4 = :email,
-              self.entry5 = :adress,
-              self.entry6 = :dateofbirthday,
-
-              Where id  = :{id}""",
-                     {
-                        'first_name' : self.entry1.get(),
-                        'last_name' : self.entry2.get(),
-                        'phone' : self.entry3.get(),
-                        'email' : self.entry4.get(),
-                        'adress' : self.entry5.get(),
-                        'dateofbirthday' : self.entry6.get(),
-                     })
+        self.entry1.insert(0 ,record[0][1])
+        self.entry2.insert(0 ,record[0][2])
+        self.entry3.insert(0 ,record[0][3])
+        self.entry4.insert(0 ,record[0][4])
+        self.entry5.insert(0 ,record[0][5])
+        self.gender_var.set(record[0][6])
+        self.entry6.insert(0 ,record[0][7])
+            
+    def update(self, table, cur, id):
+       
+        cur.execute(f"""UPDATE {table} SET
+                first_name = '{self.entry1.get()}',
+                last_name = '{self.entry2.get()}',
+                phone = '{self.entry3.get()}',
+                email = '{self.entry4.get()}',
+                address = '{self.entry5.get()}',
+                date_of_birth = '{self.entry6.get()}'
+                WHERE id = {id}""")
         con.commit()
-        messagebox.showinfo('Student enrollment program','Student Added Success')
-
-        
-
-        
+        messagebox.showinfo('Student enrollment program', 'Student updated successfully')
