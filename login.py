@@ -87,11 +87,27 @@ class Login:
         self.search_img=self.search_i.subsample(3,3)
         self.search_but=Button(self.doc_frame,text='SEARCH',bg='white',height=350,width=400,compound=TOP,image=self.search_img,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,fg='sky blue',borderwidth=3,font=('Comic Sans MS',20) , command = lambda: self.searchHandle(self.doc_frame,self.currentTable,self.cur))
         self.search_but.place(x=450,y=120)
+        
         #edit button
         self.edit_i=PhotoImage(file='images/edit.png')
         self.edit_img=self.edit_i.subsample(3,3)
-        self.edit=Button(self.doc_frame,text='EDIT',bg='white',height=350,width=400,compound=TOP,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,image=self.edit_img,fg='grey',borderwidth=3,font=('Comic Sans MS',20))
+        self.edit=Button(self.doc_frame,
+                         text='EDIT',
+                         bg='white',
+                         height=350,
+                         width=400,
+                         compound=TOP,
+                         cursor = 'cross', 
+                         relief = RAISED, 
+                         overrelief = SUNKEN,
+                         image=self.edit_img,
+                         fg='grey',borderwidth=3,
+                         font=('Comic Sans MS',20),
+                         command=lambda: self.handleEdit(self.doc_frame,self.currentTable,self.cur)
+                         )
         self.edit.place(x=20,y=520)
+        
+        
         #delete button
         self.delete_i = PhotoImage(file='images/delete.png')
         self.delete_img = self.delete_i.subsample(3, 3)
@@ -117,3 +133,5 @@ class Login:
         Delete(frame,table,cur,self.choose_table)  
     def searchHandle(self,frame,table,cur):
         Search(frame,table,cur)
+    def handleEdit (self,frame,table,cur):
+        Edit(frame,table,cur)
