@@ -34,5 +34,5 @@ class Delete:
         else:
             cur.execute(f"delete from {table} where id = '{self.ent1in.get()}' ")
             cur.connection.commit();
-            messagebox.showinfo("Deleted Successfuly...")
+            messagebox.showinfo('Student enrollment program',"Deleted Successfuly...")
         

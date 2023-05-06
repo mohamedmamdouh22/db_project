@@ -199,11 +199,15 @@ class Add:
                self.ret_frame.place(x=300,y=0)
 
      def clear(self):
-        self.entry1.delete(0,END)
-        self.entry2.delete(0,END)
-        self.entry3.delete(0,END)
-        self.entry4.delete(0,END)
-        self.entry5.delete(0,END)
+          try:
+               self.entry1.delete(0,END)
+               self.entry2.delete(0,END)
+               self.entry3.delete(0,END)
+               self.entry4.delete(0,END)
+               self.entry5.delete(0,END)
+          except:
+               print('no entry found')
+     
 
      def submit(self,table):
           coursename=self.entry1.get()
@@ -212,7 +216,7 @@ class Add:
           if coursename=='' or desc=='' or numberofstudent=='':
                messagebox.showerror('Student enrollment program','please, fill all entries')
           else:
-               cur.execute(f"INSERT INTO {table} (name,description,no of students) VALUES ('{coursename}','{desc}','{numberofstudent}')")   
+               cur.execute(f"INSERT INTO {table} (name,description,no_of_students) VALUES ('{coursename}','{desc}','{numberofstudent}')")
                con.commit()          
                messagebox.showinfo('Student enrollment program','course Added Success')
                self.frameadd.place_forget()
