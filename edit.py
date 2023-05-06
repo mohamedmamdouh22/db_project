@@ -125,45 +125,51 @@ class Update:
         self.entry6.place(x=180,y=510)
         
 
+        cur.execute(f"select * from {table}  where id = {id} ")
+        con.commit()
+        record = cur.fetchone()
+        self.entry1.insert(0 ,record[1])
+        self.entry2.insert(0 ,record[2])
+        self.entry3.insert(0 ,record[3])
+        self.entry4.insert(0 ,record[4])
+        self.entry5.insert(0 ,record[5])
+        self.entry6.insert(0 ,record[7])
+
         self.button1=Button(self.frameupdate,
                             text="Update",
                             font=('Comic Sans MS', 20),
                             bg="#68ece8", relief = RAISED, 
                             overrelief = SUNKEN,activebackground="#4dbedf",
-                            command = lambda : self.update(self.currentTable , self.cur , self.id))
+                            command = lambda : self.update('students' , self.cur , self.id))
         self.button1.place(x=100,y=650)
 
 
-        cur.execute(f"select * from {table}  where id = {id} ")
-        record = cur.fetchall()
-        self.entry1.insert(0 ,record[0])
-        self.entry2.insert(0 ,record[1])
-        self.entry3.insert(0 ,record[2])
-        self.entry4.insert(0 ,record[3])
-        self.entry5.insert(0 ,record[4])
-        self.entry6.insert(0 ,record[5])
-    
-    def update (self , table , cur , id):
-        
-        cur.execute(f""" UPDATE {table} SET  
-              self.entry1 = :first_name
-              self.entry2 = :last_name,
-              self.entry3 = :phone,
-              self.entry4 = :email,
-              self.entry5 = :adress,
-              self.entry6 = :dateofbirthday,
+    def update (self , table , cur , id ):
 
+        cur.execute(f""" UPDATE {table} SET  
+              first_name = :first,
+              last_name= :last ,
+              phone = :Phone,
+              email = :Email,
+              adress= :Adress,
+              date_of_birth = :dateofbirth,
               Where id  = :{id}""",
                      {
-                        'first_name' : self.entry1.get(),
-                        'last_name' : self.entry2.get(),
-                        'phone' : self.entry3.get(),
-                        'email' : self.entry4.get(),
-                        'adress' : self.entry5.get(),
-                        'dateofbirthday' : self.entry6.get(),
+                        'first' : self.entry1.get(),
+                        'last' : self.entry2.get(),
+                        'Phone' : self.entry3.get(),
+                        'Email' : self.entry4.get(),
+                        'Adress' : self.entry5.get(),
+                        'dateofbirth' : self.entry6.get()
                      })
+                     
         con.commit()
         messagebox.showinfo('Student enrollment program','Student Added Success')
+
+        
+
+        
+
 
         
 
