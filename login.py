@@ -4,9 +4,9 @@ from images import *
 from tkinter import messagebox
 from add import Add
 from delete import *
+from search import Search
 
-def search(frame,table,cur):
-    Search(frame,table,cur)
+
 
 class Login:
     framelogin = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
@@ -85,8 +85,8 @@ class Login:
         #search button
         self.search_i=PhotoImage(file='images/search.png')
         self.search_img=self.search_i.subsample(3,3)
-        self.search=Button(self.doc_frame,text='SEARCH',bg='white',height=350,width=400,compound=TOP,image=self.search_img,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,fg='sky blue',borderwidth=3,font=('Comic Sans MS',20) , command = lambda: search(self.doc_frame,self.currentTable,self.cur))
-        self.search.place(x=450,y=120)
+        self.search_but=Button(self.doc_frame,text='SEARCH',bg='white',height=350,width=400,compound=TOP,image=self.search_img,cursor = 'cross', relief = RAISED, overrelief = SUNKEN,fg='sky blue',borderwidth=3,font=('Comic Sans MS',20) , command = lambda: self.searchHandle(self.doc_frame,self.currentTable,self.cur))
+        self.search_but.place(x=450,y=120)
         #edit button
         self.edit_i=PhotoImage(file='images/edit.png')
         self.edit_img=self.edit_i.subsample(3,3)
@@ -115,3 +115,5 @@ class Login:
                 self.choose_table(to_forget)
     def handleDelete(self,frame,table,cur):
         Delete(frame,table,cur,self.choose_table)  
+    def searchHandle(self,frame,table,cur):
+        Search(frame,table,cur)

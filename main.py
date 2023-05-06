@@ -3,7 +3,6 @@ from login import *
 from hover import *
 from root import *
 from images import *
-import sqlite3
 
 # connect to database
 
