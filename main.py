@@ -6,8 +6,7 @@ from images import *
 import sqlite3
 
 # connect to database
-con=sqlite3.connect(database='db2.db')
-cur=con.cursor()
+
 
 #Start up frame
 
