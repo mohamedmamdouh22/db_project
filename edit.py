@@ -40,16 +40,16 @@ class Edit:
 
     #check if the id of the user is exist     
     def check(self,table,cur):
-        #cur.execute(f"select id from {table}  where id = '{self.ent1in.get()}' ")
-       # if cur.fetchone() is None:
-        #    messagebox.showerror("Error","No such record exists")
-        #else:
-        self.buttonn = Button(self.frameEdit,
+        cur.execute(f"select id from {table}  where id = '{self.ent1in.get()}' ")
+        if cur.fetchone() is None:
+            messagebox.showerror("Error","No such record exists")
+        else:
+           self.buttonn = Button(self.frameEdit,
                               bg='limegreen', 
                               text="Enter",
                               font=('Comic Sans MS', 20),
                               command=lambda: self.handleupdate(self.frameEdit,table, cur , self.ent1in.get()))
-        self.buttonn.place(x=180, y=500)
+           self.buttonn.place(x=180, y=500)
     
     def handleupdate (self,frame,table,cur , id ):
         Update(frame , table, cur , id )
