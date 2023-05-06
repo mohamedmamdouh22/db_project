@@ -4,11 +4,12 @@ from images import *
 from tkinter import messagebox
 
 class Delete:
-    def __init__(self,start_frame,table,cur):
+    def __init__(self,start_frame,table,cur,choose_table):
         start_frame.place_forget()
         self.frameDelete = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
         self.frameDelete.place(x=500,y=0)
         self.currentTable=table
+        self.choose_table=choose_table
         ########
         # self.photo=global_image_list[0]
         self.photo=PhotoImage(file='images/delete.png')
@@ -23,7 +24,7 @@ class Delete:
         self.ent1in.focus()
         self.butin = Button(self.frameDelete,bg='limegreen', text="Delete", font=('Comic Sans MS', 20),command=lambda:self.check(self.currentTable,cur))
         self.butin.place(x=180, y=550)
-        self.resetin = Button(self.frameDelete, text="Exit", activebackground='red', font=('Comic Sans MS', 20), command=self.frameDelete.destroy)
+        self.resetin = Button(self.frameDelete, text="Exit", activebackground='red', font=('Comic Sans MS', 20), command=lambda:self.choose_table(self.frameDelete))
         self.resetin.place(x=190, y=680)
         
     def check(self,table,cur):
@@ -34,6 +35,4 @@ class Delete:
             cur.execute(f"delete from {table} where id = '{self.ent1in.get()}' ")
             cur.connection.commit();
             messagebox.showinfo("Deleted Successfuly...")
-            self.frameDelete.destroy()
-            
         
