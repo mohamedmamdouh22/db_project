@@ -4,9 +4,6 @@ from hover import *
 from root import *
 from images import *
 
-# connect to database
-
-
 #Start up frame
 
 frame = Frame(root,width=1400,height=900,highlightbackground='#888',highlightthickness=1)
@@ -17,9 +14,9 @@ var.set('Welcome To Student Enrollment Program')
 ##########################
 photo=PhotoImage(file="images/student.png",height=800)
 Label(frame,image=photo,width=1400).pack()
-def login(frame,cur):
-    Login(frame,cur)
-logbutton = HoverButton(frame,text="Login",bg="#68ece8",font=("Comic Sans MS",30),fg="black", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=lambda : login(frame,cur))
+def login(frame,cur,con):
+    Login(frame,cur,con)
+logbutton = HoverButton(frame,text="Login",bg="#68ece8",font=("Comic Sans MS",30),fg="black", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=lambda : login(frame,cur,con))
 logbutton.place(x=400,y=700)
 # button exit
 exit = HoverButton(frame,text="Exit",bg="#68ece8",font=("Comic Sans MS",30),fg="black",activeforeground='red', relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",cursor="mouse",command=quit)

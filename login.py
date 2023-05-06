@@ -10,9 +10,10 @@ from edit import *
 
 class Login:
     framelogin = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
-    def __init__(self,Start_frame,cur):
+    def __init__(self,Start_frame,cur,con):
         Start_frame.place_forget()
         self.cur=cur
+        self.con=con
         self.currentTable='students'
         self.framelogin = Frame(root, bg="white",width=500,height=900,highlightbackground='#888',highlightthickness=1)
         self.framelogin.place(x=500,y=0)
@@ -72,7 +73,7 @@ class Login:
         self.back_lab.place(x=30,y=10)
         self.var=StringVar()
         self.lab=Label(self.doc_frame,textvariable=self.var,font=('Comic Sans MS', 20 ,'bold'),background='white')
-        self.var.set(table_name.upper())
+        self.var.set(table_name.capitalize())
         self.lab.place(x=350,y=10)
         #add button
         self.add_i=PhotoImage(file='images/add.png')
@@ -113,7 +114,7 @@ class Login:
         self.delete_img = self.delete_i.subsample(3, 3)
         self.delete = Button(self.doc_frame, text='DELETE', bg='white', fg='red', height=350,
                         width=400, relief=RAISED, overrelief=SUNKEN, compound=TOP,cursor = 'cross', image=self.delete_img,
-                        borderwidth=3, font=('Comic Sans MS', 20),command=lambda: self.handleDelete(self.doc_frame,self.currentTable,self.cur))
+                        borderwidth=3, font=('Comic Sans MS', 20),command=lambda: self.handleDelete(self.doc_frame,self.currentTable))
         self.delete.place(x=450, y=520)
 
     def check(self,to_forget):
@@ -122,15 +123,16 @@ class Login:
         if result_username == None:
             messagebox.showerror("Student Enrollment","Wrong Email")
         elif result_username != None :
-            self.cur.execute(f"select pass from login_emails where pass = {self.ent2in.get()}")
+            self.cur.execute(f"select password from login_emails where password = '{self.ent2in.get()}' ")
             result_pass = self.cur.fetchone()
             if result_pass == None:
                 messagebox.showerror("Student Enrollment","Wrong Password")
             else :
                 messagebox.showinfo("Student Enrollment","Welcome "+ self.ent1in.get().split('@')[0])
                 self.choose_table(to_forget)
-    def handleDelete(self,frame,table,cur):
-        Delete(frame,table,cur,self.choose_table)  
+    def handleDelete(self,frame,table):
+        self.back_lab.place_forget() 
+        Delete(frame,table,self.cur,self.con,self.start_screen) 
     def searchHandle(self,frame,table,cur):
         Search(frame,table,cur)
     def handleEdit (self,frame,table,cur):
