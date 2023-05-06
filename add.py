@@ -181,9 +181,11 @@ class Add:
               saved_mails.append(mail[0])
          for phon in phons:
               saved_phons.append(phon[0])
-         if firstname=='' or lasttname == '' or phone=='' or email == '' or date == '' :
+         if firstname.isdigit or lasttname.isdigit() or phone.isalpha() or email.count('@')!=1:
+              messagebox.showerror('Student enrollment program','wrong data type')
+         elif firstname=='' or lasttname == '' or phone=='' or email == '' or date == '' :
               messagebox.showerror('Student enrollment program','please, fill all entries')
-         if email in saved_mails:
+         elif email in saved_mails:
               messagebox.showerror('Student enrollment program','email already exists')
          elif phone in saved_phons: 
               messagebox.showerror('Student enrollment program','phone already exists')
