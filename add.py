@@ -9,6 +9,7 @@ class Add:
           if table=='students':
                self.ret_frame=doc_frame
                doc_frame.place_forget()
+               
                self.cur=cur
                self.frameadd = Frame(root, bg="white",width=600,height=900,highlightbackground='#888',highlightthickness=1)
                self.frameadd.place(x=400,y=0)
@@ -56,11 +57,14 @@ class Add:
                self.female=Radiobutton(self.frameadd,text="Female",font=('Comic Sans MS', 20),bg='white',variable=self.gender_var,value="Female")
                self.female.place(x=300,y=430)
 
-               self.dateofbirthday=Label(self.frameadd,text="BirthDate ",font=('Comic Sans MS', 20),bg='white')
+               self.dateofbirthday=Label(self.frameadd,text="Data ",font=('Comic Sans MS', 20),bg='white')
                self.dateofbirthday.place(x=30,y=500)
                self.entry6=Entry(self.frameadd,font=('Comic Sans MS', 20))
                self.entry6.place(x=180,y=510)
-
+               self.noOfCourses=Label(self.frameadd,text="# of courses",font=('Comic Sans MS', 17),bg='white')
+               self.noOfCourses.place(x=30,y=570)
+               self.entry7=Entry(self.frameadd,font=('Comic Sans MS', 20))
+               self.entry7.place(x=180,y=580)
 
                self.button1=Button(self.frameadd,text="Save",font=('Comic Sans MS', 20),bg="#68ece8", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",command=lambda:self.insert('students'))
                self.button1.place(x=100,y=650)
@@ -151,10 +155,16 @@ class Add:
                self.female=Radiobutton(self.frameadd,text="Female",font=('Comic Sans MS', 20),bg='white',variable=self.gender_var,value="Female")
                self.female.place(x=300,y=430)
 
-               self.dateofbirthday=Label(self.frameadd,text="BirthDate ",font=('Comic Sans MS', 20),bg='white')
+               self.dateofbirthday=Label(self.frameadd,text="Date ",font=('Comic Sans MS', 20),bg='white')
                self.dateofbirthday.place(x=30,y=500)
                self.entry6=Entry(self.frameadd,font=('Comic Sans MS', 20))
                self.entry6.place(x=180,y=510)
+               self.noOfCourses=Label(self.frameadd,text="# of courses",font=('Comic Sans MS', 17),bg='white')
+               self.noOfCourses.place(x=30,y=570)
+               self.entry7=Entry(self.frameadd,font=('Comic Sans MS', 20))
+               self.entry7.place(x=180,y=580)
+
+
 
 
                self.button1=Button(self.frameadd,text="Save",font=('Comic Sans MS', 20),bg="#68ece8", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",command=lambda:self.insert('instructors'))
@@ -164,41 +174,69 @@ class Add:
          
               
      def insert(self,table):
-         firstname=self.entry1.get()
-         lasttname=self.entry2.get()
-         phone=self.entry3.get()
-         email= self.entry4.get()
-         address=self.entry5.get()
-         gender=self.gender_var.get()
-         date=self.entry6.get()
-         cur.execute('select email from students')
-         mails=cur.fetchall()
-         cur.execute('select phone from students')
-         phons=cur.fetchall()
-         saved_mails=[]
-         saved_phons=[]
-         for mail in mails:
-              saved_mails.append(mail[0])
-         for phon in phons:
-              saved_phons.append(phon[0])
-         if firstname.isdigit or lasttname.isdigit() or phone.isalpha() or email.count('@')!=1:
-              messagebox.showerror('Student enrollment program','wrong data type')
-         elif firstname=='' or lasttname == '' or phone=='' or email == '' or date == '' :
-              messagebox.showerror('Student enrollment program','please, fill all entries')
-         elif email in saved_mails:
-              messagebox.showerror('Student enrollment program','email already exists')
-         elif phone in saved_phons: 
-              messagebox.showerror('Student enrollment program','phone already exists')
-         else:     
-               cur.execute(f"INSERT INTO {table} (first_name,last_name,phone,email,address,gender,date_of_birth,course_id) VALUES ('{firstname}','{lasttname}','{phone}','{email}','{address}','{gender}','{date}','1')")
-               con.commit()
-               if table=='students':
-                    messagebox.showinfo('Student enrollment program','Student Added Success')
-               else:
-                    messagebox.showinfo('Student enrollment program','instructor Added Success')
+          self.courses = Frame(root, bg="white",width=600,height=900,highlightbackground='#888',highlightthickness=1)
+          firstname=self.entry1.get()
+          lasttname=self.entry2.get()
+          phone=self.entry3.get()
+          email= self.entry4.get()
+          address=self.entry5.get()
+          gender=self.gender_var.get()
+          date=self.entry6.get()
+          mails=cur.execute(f'select email from {table}').fetchall()
+          phons=cur.execute(f'select phone from {table}').fetchall()
+          saved_mails=[]
+          saved_phons=[]
+          for mail in mails:
+               saved_mails.append(mail[0])
+          for phon in phons:
+               saved_phons.append(phon[0])
+          if firstname.isdigit() or lasttname.isdigit() or phone.isalpha() or email.count('@')==0 :
+               messagebox.showerror('Student enrollment program','wrong data types')  
+          elif firstname=='' or lasttname == '' or phone=='' or email == '' or date == '' :
+               messagebox.showerror('Student enrollment program','please, fill all entries')
+          elif email in saved_mails:
+               messagebox.showerror('Student enrollment program','email already exists')
+          elif phone in saved_phons: 
+               messagebox.showerror('Student enrollment program','phone already exists')
+          elif int(self.entry7.get())==0:
+               messagebox.showerror('Student enrollment program','student should assign at least one course')
+          elif int(self.entry7.get())>4:
+               messagebox.showerror('Student enrollment program','student should assign maximum 4 courses')
+          else:
+               self.courses.place(x=400,y=0)
+               n=int(self.entry7.get())
+               L=[]
+               for i in range(n):
+                    
+                    k=Label(self.courses,text=f"course{i+1} ",font=('Comic Sans MS', 20),bg='white')
+                    k.place(x=20,y=100*i+1)
+                    L.append(Entry(self.courses,font=('Comic Sans MS', 20)))
+                    L[i].place(x=150,y=110*i+1)
+               self.button1=Button(self.courses,text="Save",font=('Comic Sans MS', 20),bg="#68ece8", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf",command=lambda:self.save_std(L,table))
+               self.button1.place(x=100,y=650)
+               self.button2=Button(self.courses,text="clear",font=('Comic Sans MS', 20),command=self.clear,bg="#68ece8", relief = RAISED, overrelief = SUNKEN,activebackground="#4dbedf")
+               self.button2.place(x=300,y=650)
 
-               self.frameadd.place_forget()
-               self.ret_frame.place(x=300,y=0)
+     def save_std(self,L,table):
+               print(L)
+               firstname=self.entry1.get()
+               lasttname=self.entry2.get()
+               phone=self.entry3.get()
+               email= self.entry4.get()
+               address=self.entry5.get()
+               gender=self.gender_var.get()
+               date=self.entry6.get()
+
+               for i in range(len(L)):
+                    if cur.execute(f'select id from courses where id={L[i].get()}') !=None:
+                         cur.execute(f"INSERT INTO {table} (first_name,last_name,phone,email,address,gender,date_of_birth,course_id) VALUES ('{firstname}','{lasttname}','{phone}','{email}','{address}','{gender}','{date}','{L[i].get()}')")
+                         con.commit()
+                         messagebox.showinfo('Student enrollment program','courses Added Success')
+                         self.frameadd.place_forget()
+                         self.courses.place_forget()
+                         self.ret_frame.place(x=300,y=0)
+                    else:
+                         messagebox.showerror('Student enrollment program','course id not found')
 
      def clear(self):
           try:
@@ -223,24 +261,3 @@ class Add:
                messagebox.showinfo('Student enrollment program','course Added Success')
                self.frameadd.place_forget()
                self.ret_frame.place(x=300,y=0)
-
-
-            
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
