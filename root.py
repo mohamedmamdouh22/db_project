@@ -1,8 +1,9 @@
 from tkinter import *
-root = Tk()
 import mysql.connector as msc
+root = Tk()
 root.geometry("1300x900")
-root.resizable(width=False, height=False)
+root.minsize(1300, 900)
+root.resizable(width=True, height=True)
 root.title('Students Database')
 root.iconbitmap(default=r'./images/icon.ico')
 
