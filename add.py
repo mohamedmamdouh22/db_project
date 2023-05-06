@@ -151,7 +151,7 @@ class Add:
                self.female=Radiobutton(self.frameadd,text="Female",font=('Comic Sans MS', 20),bg='white',variable=self.gender_var,value="Female")
                self.female.place(x=300,y=430)
 
-               self.dateofbirthday=Label(self.frameadd,text="Data ",font=('Comic Sans MS', 20),bg='white')
+               self.dateofbirthday=Label(self.frameadd,text="BirthDate ",font=('Comic Sans MS', 20),bg='white')
                self.dateofbirthday.place(x=30,y=500)
                self.entry6=Entry(self.frameadd,font=('Comic Sans MS', 20))
                self.entry6.place(x=180,y=510)

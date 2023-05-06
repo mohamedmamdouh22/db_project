@@ -119,7 +119,7 @@ class Update:
         self.female=Radiobutton(self.frameupdate,text="Female",font=('Comic Sans MS', 20),bg='white',variable=self.gender_var,value="Female")
         self.female.place(x=300,y=430)
 
-        self.dateofbirthday=Label(self.frameupdate,text="Data ",font=('Comic Sans MS', 20),bg='white')
+        self.dateofbirthday=Label(self.frameupdate,text="BirthDate ",font=('Comic Sans MS', 20),bg='white')
         self.dateofbirthday.place(x=30,y=500)
         self.entry6=Entry(self.frameupdate,font=('Comic Sans MS', 20))
         self.entry6.place(x=180,y=510)
