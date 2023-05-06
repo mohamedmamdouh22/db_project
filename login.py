@@ -5,7 +5,7 @@ from tkinter import messagebox
 from add import Add
 from delete import *
 from search import Search
-
+from edit import *
 
 
 class Login:
