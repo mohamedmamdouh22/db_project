@@ -6,8 +6,8 @@ from tkinter import messagebox
 class Delete:
     def __init__(self,start_frame,table,cur,con,start_screen):
         start_frame.place_forget()
-        self.frameDelete = Frame(root, bg="white",width=500,height=800,highlightbackground='#888',highlightthickness=1)
-        self.frameDelete.place(x=500,y=0)
+        self.frameDelete = Frame(root, bg="white",width=600,height=900,highlightbackground='#888',highlightthickness=1)
+        self.frameDelete.place(x=400,y=0)
         self.currentTable=table
         self.start_screen= start_screen
         self.cur=cur

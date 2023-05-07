@@ -15,7 +15,7 @@ class Login:
         self.cur=cur
         self.con=con
         self.currentTable='students'
-        self.framelogin = Frame(root, bg="white",width=500,height=900,highlightbackground='#888',highlightthickness=1)
+        self.framelogin = Frame(root, bg="white",width=600,height=900,highlightbackground='#888',highlightthickness=1)
         self.framelogin.place(x=500,y=0)
         ########
         # self.photo=global_image_list[0]

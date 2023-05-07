@@ -13,7 +13,7 @@ class Edit:
         self.cur=cur
         self.frameEdit = Frame(root,
                                bg="white",
-                               width=500,height=900
+                               width=600,height=900
                                ,highlightbackground='#888'
                                ,highlightthickness=1)
         self.frameEdit.place(x=400,y=0)
