@@ -1,5 +1,5 @@
 from tkinter import *
-import mysql.connector as msc
+# import mysql.connector as msc
 import sqlite3
 root = Tk()
 root.geometry("1300x900")

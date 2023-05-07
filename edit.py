@@ -1,6 +1,7 @@
 from tkinter import *
 from root import *
 from images import *
+from login import *
 from tkinter import messagebox
 
 class Edit:
@@ -8,6 +9,7 @@ class Edit:
         
         #delet last frame 
         start_frame.place_forget()
+        
 
         #creat new frame for edit 
         self.cur=cur
@@ -62,6 +64,7 @@ class Update:
         
         #delet last frame 
         start_frame.place_forget()
+        
 
         #creat new frame for edit 
         self.cur=cur
