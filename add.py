@@ -182,8 +182,10 @@ class Add:
           address=self.entry5.get()
           gender=self.gender_var.get()
           date=self.entry6.get()
-          mails=cur.execute(f'select email from {table}').fetchall()
-          phons=cur.execute(f'select phone from {table}').fetchall()
+          cur.execute(f'select email from {table}')
+          mails=cur.fetchall()
+          cur.execute(f'select phone from {table}')
+          phons=cur.fetchall()
           saved_mails=[]
           saved_phons=[]
           for mail in mails:
@@ -218,7 +220,6 @@ class Add:
                self.button2.place(x=300,y=650)
 
      def save_std(self,L,table):
-               print(L)
                firstname=self.entry1.get()
                lasttname=self.entry2.get()
                phone=self.entry3.get()
@@ -228,7 +229,9 @@ class Add:
                date=self.entry6.get()
 
                for i in range(len(L)):
-                    if cur.execute(f'select id from courses where id={L[i].get()}') !=None:
+                    cur.execute(f'select id from courses where id={L[i].get()}')
+                    row = cur.fetchone()
+                    if row is not None:
                          cur.execute(f"INSERT INTO {table} (first_name,last_name,phone,email,address,gender,date_of_birth,course_id) VALUES ('{firstname}','{lasttname}','{phone}','{email}','{address}','{gender}','{date}','{L[i].get()}')")
                          con.commit()
                          messagebox.showinfo('Student enrollment program','courses Added Success')
@@ -237,6 +240,7 @@ class Add:
                          self.ret_frame.place(x=300,y=0)
                     else:
                          messagebox.showerror('Student enrollment program','course id not found')
+
 
      def clear(self):
           try:

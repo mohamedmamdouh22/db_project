@@ -35,7 +35,7 @@ class Delete:
             messagebox.showerror("Error","No such record exists")
         else:
             cur.execute(f"delete from {table} where id = '{self.ent1in.get()}' ")
-            cur.connection.commit();
+            con.commit()
             messagebox.showinfo('Student enrollment program',"Deleted Successfuly...")
     def handleExit(self):
         self.start_screen(self.frameDelete,self.currentTable)

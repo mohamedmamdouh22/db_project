@@ -134,7 +134,7 @@ class Update:
             self.entry7s=Entry(self.frameupdate,font=('Comic Sans MS', 20))
             self.entry7s.place(x=180,y=570)
 
-            cur.execute(f"select * from '{table}'  where id = '{id}' ")
+            cur.execute(f"select * from {table}  where id = {id}")
             con.commit()
             record = cur.fetchone()
             self.entry1s.insert(0 ,record[1])
@@ -176,7 +176,7 @@ class Update:
             self.entry3.place(x=210,y=410)
 
 
-            cur.execute(f"select * from '{table}'  where id = '{id}' ")
+            cur.execute(f"select * from {table}  where id = {id}")
             con.commit()
             record = cur.fetchone()
             self.entry1.insert(0 ,record[1])
@@ -244,7 +244,7 @@ class Update:
             self.entry7i=Entry(self.frameupdate,font=('Comic Sans MS', 20))
             self.entry7i.place(x=180,y=570)
 
-            cur.execute(f"select * from '{table}'  where id = '{id}' ")
+            cur.execute(f"select * from {table}  where id = {id} ")
             con.commit()
             record = cur.fetchone()
             self.entry1i.insert(0 ,record[1])
@@ -268,52 +268,52 @@ class Update:
     
     def updates (self , table , cur , id ):
 
-        cur.execute(f"update '{table}' set first_name = '{self.entry1s.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set first_name = '{self.entry1s.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set last_name = '{self.entry2s.get()}' where id = '{id}' ")
+        cur.execute(f"update  {table} set last_name = '{self.entry2s.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set phone = '{self.entry3s.get()}' where id = '{id}' ")
+        cur.execute(f"update  {table}  set phone = '{self.entry3s.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set email = '{self.entry4s.get()}' where id = '{id}' ")
+        cur.execute(f"update  {table}  set email = '{self.entry4s.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set address = '{self.entry5s.get()}' where id = '{id}' ")
+        cur.execute(f"update  {table} set address = '{self.entry5s.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set date_of_birth = '{self.entry6s.get()}' where id = '{id}' ")
+        cur.execute(f"update  {table}  set date_of_birth = '{self.entry6s.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set course_id = '{self.entry7s.get()}' where id = '{id}' ")
+        cur.execute(f"update  {table} set course_id = '{self.entry7s.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set gender = '{self.gender_vars.get()}' where id = '{id}' ")
+        cur.execute(f"update  {table}  set gender = '{self.gender_vars.get()}' where id = {id} ")
         con.commit()
         messagebox.showinfo('Student enrollment program','Student update Success')
 
 
     def updatei (self , table , cur , id ):
 
-        cur.execute(f"update '{table}' set first_name = '{self.entry1i.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set first_name = '{self.entry1i.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set last_name = '{self.entry2i.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set last_name = '{self.entry2i.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set phone = '{self.entry3i.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set phone = '{self.entry3i.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set email = '{self.entry4i.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set email = '{self.entry4i.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set address = '{self.entry5i.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set address = '{self.entry5i.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set date_of_birth = '{self.entry6i.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set date_of_birth = '{self.entry6i.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set course_id = '{self.entry7i.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set course_id = '{self.entry7i.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set gender = '{self.gender_vari.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set gender = '{self.gender_vari.get()}' where id = {id} ")
         con.commit()
         messagebox.showinfo('Student enrollment program','update instrotr info Success')
     
     def updatec (self , table , cur , id ):
 
-        cur.execute(f"update '{table}' set name = '{self.entry1.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set name = '{self.entry1.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set description = '{self.entry2.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set description = '{self.entry2.get()}' where id = {id} ")
         con.commit()
-        cur.execute(f"update '{table}' set no_of_students = '{self.entry3.get()}' where id = '{id}' ")
+        cur.execute(f"update {table} set no_of_students = '{self.entry3.get()}' where id = {id} ")
         con.commit()
         messagebox.showinfo('Student enrollment program','update courses Success')
 
